@@ -189,6 +189,9 @@
 		var options = {
 		  center: [36.2, -83.9],
 		  zoom: 7,
+		  maxZoom: 19,
+		  minZoom: 6,
+		  dragging: false
 		};
   
 		// create a Leaflet map in our division container with id of 'map'
@@ -202,8 +205,6 @@
 		var basemap_options = {
 		  attribution: 'Tiles &copy; Esri &mdash; National Geographic, Esri, DeLorme, NAVTEQ, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA, iPC',
 		  subdomains: "abcd",
-		  maxZoom: 19,
-		  minZoom: 7
 		};
   
 		// request some basemap tiles and add to the map
