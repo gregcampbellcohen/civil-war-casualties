@@ -187,8 +187,8 @@
     <script>
 		// map options
 		var options = {
-		  center: [35.9, -83.9],
-		  zoom: 5,
+		  center: [36.2, -83.9],
+		  zoom: 7,
 		};
   
 		// create a Leaflet map in our division container with id of 'map'
@@ -203,7 +203,7 @@
 		  attribution: 'Tiles &copy; Esri &mdash; National Geographic, Esri, DeLorme, NAVTEQ, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA, iPC',
 		  subdomains: "abcd",
 		  maxZoom: 19,
-		  minZoom: 5
+		  minZoom: 7
 		};
   
 		// request some basemap tiles and add to the map
@@ -340,11 +340,49 @@
 			);
 		  },
 		}).addTo(map);
+
+		var diseases = L.geoJson(battles, {
+		  pointToLayer: function (feature, latlng) {
+			return L.circleMarker(latlng, commonStyles);
+		  },
+		  filter: function (feature) {
+			if (feature.properties.disease) {
+			  return feature;
+			}
+		  },
+		  style: function (feature) {
+			return {
+			  color: "white",
+			  fillColor: "black",
+			  radius: getRadius(feature.properties.tot_cas),
+			};
+		  },
+		  onEachFeature: function (feature, layer) {
+			layer.on("mouseover", function () {
+			  layer.setStyle({
+				fillColor: "orange",
+			  });
+			});
+			layer.on("mouseout", function () {
+			  layer.setStyle({
+				fillColor: "black",
+			  });
+			});
+			layer.bindPopup(
+			  "<b><big><big>" +
+				layer.feature.properties.name +
+				"</b></big><br>" +			
+				"<b>Total Deaths: </b>" +
+				layer.feature.properties.tot_cas +
+				"+ </br> Though the Civil War featured some of the bloodiest battles in the Western Hemisphere, no military engagement ever came close to the death toll from diseases such as malaria, typhoid, diarrhea, dysentery, malaria, and more. Surgeons did not yet know to sanitize their instruments and hospitals were profoundly unclean. Though the 400,000+ figure is shocking, it only tells half the story: a 'casualty' is any soldier killed, wounded, imprisoned, or missing in action, while this bubble only includes <b>deaths</b> from diseases." 
+			);
+		  },
+		}).addTo(map);
 		
 
 		function getRadius(area) {
 		  var radius = Math.sqrt(area/Math.PI);
-		  return radius *.2;
+		  return radius *.3;
 		}
 
 	  </script>
