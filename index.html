@@ -191,10 +191,8 @@
 		  zoom: 7,
 		  maxZoom: 19,
 		  minZoom: 6,
-		  dragging: true,
-		  zoomSnap: .2,
-		  maxBounds: [ [44.166444664458595, -66.13769531250001],
-    	[27.352252938063845, -101.66748046875] ]
+		  dragging: false,
+		  zoomSnap: .2
 		};
   
 		// create a Leaflet map in our division container with id of 'map'
@@ -227,7 +225,7 @@
 			if (feature.properties.victory_uni) {
 			  return feature;
 			}
-		  },
+		  }, 
 		  style: function (feature) {
 			return {
 			  color: "#FFFFFF",
@@ -378,7 +376,7 @@
 				"</b></big><br>" +			
 				"<b>Total Deaths: </b>" +
 				layer.feature.properties.tot_cas +
-				"+ </br> Though the Civil War featured some of the bloodiest battles in the Western Hemisphere, no military engagement ever came close to the death toll from diseases such as typhoid, diarrhea, dysentery, malaria, and more. Surgeons did not yet know to sanitize their instruments and hospitals were profoundly unclean. Though the 400,000+ figure is shocking, it only tells half the story: a 'casualty' is any soldier killed, wounded, imprisoned, or missing in action, while this bubble only includes <b>deaths</b> from diseases." 
+				"+ </br> Though the Civil War featured some of the bloodiest battles in the Western Hemisphere, no military engagement ever came close to the death toll from diseases such as malaria, typhoid, diarrhea, dysentery, malaria, and more. Surgeons did not yet know to sanitize their instruments and hospitals were profoundly unclean. Though the 400,000+ figure is shocking, it only tells half the story: a 'casualty' is any soldier killed, wounded, imprisoned, or missing in action, while this bubble only includes <b>deaths</b> from diseases." 
 			);
 		  },
 		}).addTo(map);
